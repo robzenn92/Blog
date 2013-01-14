@@ -1,0 +1,44 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.hero-comment-first {
+	padding: 10px;
+	background-color: #e4e6fb;
+	border: 1px solid #a2aaf0;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+    border-bottom-color: #FFF;
+}
+
+.hero-comment {
+	padding: 10px;
+	background-color: #e4e6fb;
+	border: 1px solid #a2aaf0;
+	border-top-color: #FFF;
+    border-bottom-color: #FFF;
+}
+
+.hero-comment-last {
+	padding: 10px;
+	background-color: #e4e6fb;
+	border: 1px solid #a2aaf0;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-top-color: #FFF;
+    margin-bottom: 20px;
+}
+
+.hero-single-comment {
+	padding: 10px;
+	background-color: #e4e6fb;
+	border: 1px solid #a2aaf0;
+	border-bottom-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.button_to {
+	float: left;
+	margin-right: 10px;
+}

@@ -1,0 +1,19 @@
+<% if notice%><p class="alert alert-success"><%= notice %></p><% end %>
+<% if flash[:error] %><p class="alert alert-error"><%= flash[:error] %></p><% end %>
+
+
+
+<div class="hero-single-comment">
+	<table>
+	  <tr>
+	    <td><%= image_tag(@user.image_url, :size => "40x40") %></td>
+	    <td><h3><%= link_to( @user.name + " " + @user.surname, @user, :class => "btn-link") + " " %>says:</h3></td>
+	  </tr>
+	</table>
+  	<p><%= @comment.content %></p>
+  	<% time = @comment.datetime.strftime("%A %d %B, %Y alle %H:%M") %>
+  	<p><%= time_tag(@comment.datetime , time_ago_in_words(@comment.datetime), :title => time ) %> ago</p>
+</div>
+
+<%= button_to 'Edit', edit_user_article_comment_path, method: :get, :class => "btn btn-primary" %>
+<%= button_to 'Back to comments', user_article_comments_path, method: :get, :class => "btn btn-primary" %>

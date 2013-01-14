@@ -1,0 +1,32 @@
+<% if notice%><p class="alert alert-success"><%= notice %></p><% end %>
+<% if flash[:error] %><p class="alert alert-error"><%= flash[:error] %></p><% end %>
+
+<div class="hero-unit">
+	<h1><%= @article.title %></h1><br/>
+	<p><%= @article.content %></p><br/>
+	<p>Written by <%= link_to( @article.user.name + " " + @article.user.surname, @article.user, :class => "btn-link") %>
+	<%= time_tag(@article.datetime , time_ago_in_words(@article.datetime), :title => @article.datetime.strftime("%A %d %B, %Y alle %H:%M")) %> ago</p><br/>
+	<p><%= pluralize(@article.comments.count, "comment") %>, <%= pluralize(@article.likes.count, "like") %></p>
+	<p><%= button_to 'Comment this', new_user_article_comment_path(@article.user_id, @article), method: :get, :class => "btn btn-primary btn-large btn-commentthis" %><%= button_to 'Like this', user_path(@user), :class => "btn btn-primary btn-large btn-likethis" %></p>
+</div>
+
+<% @article.comments.each do |comment| %>
+    <div class=<%= (comment == @article.comments.first)? "hero-comment-first" : "hero-comment" %>>
+    	<table>
+    		<tr>
+    			<td><%= image_tag(comment.user.image_url, :size => "40x40") %></td>
+	    		<td><h3><%= link_to( @article.user.name + " " + @article.user.surname, @article.user, :class => "btn-link") + " " %>says:</h3></td>
+	    	</tr>
+	    </table><br/>
+	    <p>This comment has id <%= comment.id %></p>
+	    <p><%= comment.content %></p>
+	    <% time = comment.datetime.strftime("%A %d %B, %Y alle %H:%M") %>
+	    <p><%= time_tag(comment.datetime , time_ago_in_words(comment.datetime), :title => time ) %> ago</p>
+    </div>
+<% end %>
+
+<!-- Add comment form render -->
+<%= render "comments/addcomment" %>
+
+<%= button_to 'Edit', edit_user_article_path, method: :get, :class => "btn btn-primary" %>
+<%= button_to 'Back to user articles', user_articles_path, method: :get, :class => "btn btn-primary" %>

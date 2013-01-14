@@ -1,0 +1,32 @@
+<% if notice%><p class="alert alert-success"><%= notice %></p><% end %>
+<% if flash[:error] %><p class="alert alert-error"><%= flash[:error] %></p><% end %>
+
+<h1>Listing <%= @user.name + " " + @user.surname %>'s   articles</h1>
+
+<table class="table table-hover table-bordered">
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Number of comments</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= article.id %></td>
+    <td><%= article.title %></td>
+    <td><%= raw truncate( article.content, :length => 250, :omission => (link_to ' ..Continued', user_article_path(article.user_id, article), :class => "btn-link" ) ) %></td>
+    <td><%= article.comments.count %></td>
+    <td><%= link_to raw('<i class="icon-home glyph"></i>'), user_article_path(article.user_id, article), :class => "btn btn-success",:title => "Show" %></td>
+    <td><%= link_to raw('<i class="icon-pencil glyph"></i>'), edit_user_article_path(article.user_id, article), :class => "btn btn-primary",:title => "Edit" %></td>
+    <td><%= link_to raw('<i class="icon-trash glyph"></i>'), user_article_path(article.user_id, article), :class => "btn btn-danger",:title => "Delete", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= button_to 'New Article', new_user_article_path, method: :get, :class => "btn btn-primary"%>

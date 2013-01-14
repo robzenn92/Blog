@@ -1,0 +1,18 @@
+<%= form_for([@user, @article, @article.comments.build], :html => {:class => "hero-comment-last"}) do |f| %>
+  <table>
+        <tr>
+          <td><%= image_tag(@user.image_url, :size => "40x40") %></td>
+          <td><h3><%= link_to( @user.name + " " + @user.surname, @user, :class => "btn-link") + " " %>says:</h3></td>
+        </tr>
+  </table>
+  <div class="field">
+    <%= f.text_area :content, :class => "comment-area", :rows => "3" %>
+  </div>
+  <div class="field">
+    <%= f.datetime_select :datetime %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Comment", :class => "btn btn-primary btn-large" %>
+  </div>
+  
+<% end %>
