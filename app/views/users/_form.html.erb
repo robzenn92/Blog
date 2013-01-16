@@ -1,6 +1,6 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :html => {:class => "form-signup form-horizontal"}) do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-error">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
@@ -11,19 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name, :placeholder => "Your name" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :surname %><br />
-    <%= f.text_field :surname %>
+  <div class="control-group">
+    <%= f.label :surname, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :surname, :placeholder => "Your surname" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :image_url %><br />
-    <%= f.text_field :image_url %>
+  <div class="control-group">
+    <%= f.label :email, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :email, :placeholder => "Your email" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password, :class => "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password, :placeholder => "Password" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, "Confirm", :class => "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :placeholder => "Confirm" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :image_url, "Your image path", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :image_url, :placeholder => "Image path" %>
+    </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Sign up", :class => "btn btn-large btn-primary" %>
   </div>
 <% end %>

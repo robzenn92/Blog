@@ -8,6 +8,7 @@
 	<%= time_tag(@article.datetime , time_ago_in_words(@article.datetime), :title => @article.datetime.strftime("%A %d %B, %Y alle %H:%M")) %> ago</p><br/>
 	<p><%= pluralize(@article.comments.count, "comment") %>, <%= pluralize(@article.likes.count, "like") %></p>
 	<p><%= button_to 'Comment this', new_user_article_comment_path(@article.user_id, @article), method: :get, :class => "btn btn-primary btn-large btn-commentthis" %><%= button_to 'Like this', user_path(@user), :class => "btn btn-primary btn-large btn-likethis" %></p>
+	<div style="clear: both;"></div>
 </div>
 
 <% @article.comments.each do |comment| %>
@@ -19,7 +20,7 @@
 	    	</tr>
 	    </table><br/>
 	    <p>This comment has id <%= comment.id %></p>
-	    <p><%= comment.content %></p>
+	    <p class="commentContent"><%= comment.content %></p>
 	    <% time = comment.datetime.strftime("%A %d %B, %Y alle %H:%M") %>
 	    <p><%= time_tag(comment.datetime , time_ago_in_words(comment.datetime), :title => time ) %> ago</p>
     </div>

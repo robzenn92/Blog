@@ -13,3 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require bootstrap
+
+$(document).ready(function(){
+	var max = 140;
+	var $this = $('.hero-single-comment');
+	var $area = $('.comment-area');
+	var $numChar = $('.numChar');
+    $this.bind('keyup', function() {
+        var cc = $area.val().length;
+        $numChar.text(max - cc + " characters");
+    });
+});
+
+
+$(document).ready(function(){
+    $('.dropdown-toggle').dropdown();
+});

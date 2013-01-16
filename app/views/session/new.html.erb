@@ -1,0 +1,17 @@
+
+<% if notice %><p class="alert alert-success"><%= notice %></p><% end %>
+<% if flash[:error] %><p class="alert alert-error"><%= flash[:error] %></p><% end %>
+
+
+<div class="container">
+    <%= form_tag({}, :class => 'form-signin') do %>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <%= text_field_tag :name, params[:name], :placeholder => "Email address", :class => "input-block-level" %>
+        <%= password_field_tag :password, params[:password], :placeholder => "Password", :class => "input-block-level" %>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <%= submit_tag "Sign in", :class => "btn btn-large btn-primary" %>
+    <% end %>
+    <p class="signupText">Do you want to join us? <%= link_to "Sign Up Now", new_user_path, :class => "btn-link" %> </p>
+</div> <!-- /container -->

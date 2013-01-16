@@ -1,9 +1,4 @@
 Blogger::Application.routes.draw do
-  
-  get "like/add_like_to_article"
-  get "like/remote_like_from_article"
-
-
   resources :users do
     resources :articles do
       resources :comments
@@ -11,6 +6,13 @@ Blogger::Application.routes.draw do
   end
 
 
+  controller :session do
+    get "login" => :new
+    post "login" => :create
+    get "logout" => :destroy
+    delete "logout" => :destroy
+  end
+  
 =begin
   match 'articles/:article_id/comments' => "comments#index", :via => :get#, :as => "show_all_article_comments"
   match 'articles/:article_id/comments/:comment_id' => "comments#show", :via => :get, :as => "show_article_comment"
@@ -20,6 +22,9 @@ Blogger::Application.routes.draw do
   match 'like/:article_id' => "like#add_like_to_article", :via => :post, :as => "like_article"
 
 =end
+
+  #match '/login', to: "session#create", :via => :get
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -70,7 +75,7 @@ Blogger::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'users#index'
+  root :to => 'session#new', as: "login"
 
   # See how all your routes lay out with "rake routes"
 

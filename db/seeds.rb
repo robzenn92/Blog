@@ -17,12 +17,16 @@ User.destroy_all
 
 puts "[Creating 10 Users]"
 
-for i in 1..10 do 
+for i in 1..10 do
 
 User.create(
 	:name => "User"+i.to_s,
 	:surname => "Surname"+i.to_s,
-	:image_url => "user.jpg"
+	:image_url => "user.jpg",
+	:email => "example@domain.org",
+	:password => "ciao",
+	:password_confirmation => "ciao",
+	:description => %{Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.}
 )
 
 end
@@ -61,7 +65,7 @@ users.each do |u|
 
 		Comment.create(
 
-			:content => %{ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. },
+			:content => %{ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. },
 			:datetime => DateTime.now,
 			:user_id => u.id,
 			:article_id => u.articles.first.id
@@ -69,23 +73,12 @@ users.each do |u|
 
 		Comment.create(
 
-			:content => %{ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. },
+			:content => %{ Lorem ipsum dolor sit amet, consectetuer. },
 			:datetime => DateTime.now,
 			:user_id => u.id,
 			:article_id => u.articles.first.id
 		)
 
 	end
-
-	puts "\t[Creating " + u.name + " " + u.surname + "'s likes]"
-
-	5.times {
-
-		Like.create(
-			:article_id => 1,
-			:user_id => u.id
-		)
-
-	}
 
 end
